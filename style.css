@@ -18,14 +18,32 @@
 html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--sans);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+    /* دمج طبقة مظلمة شفافة مع الصورة لضمان وضوح النصوص */
+    background-image: linear-gradient(rgba(91, 51, 51, 0.482), rgba(101, 64, 64, 0.619)), url('IMG1/goju.jpg');
+    
+    /* تغطية الشاشة بالكامل دون تشويه */
+    background-size: cover;
+    
+    /* توسيط الصورة دائماً بغض النظر عن حجم الشاشة */
+    background-position: center center;
+    
+    /* منع تكرار الصورة */
+    background-repeat: no-repeat;
+    
+    /* تثبيت الخلفية على أجهزة الكمبيوتر وإلغاؤها على الموبايل لتجنب مشاكل التمرير */
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* لمنع ظهور شريط تمرير أفقي مزعج */
 }
 
+/* ثبات على الهواتف الذكية */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
@@ -49,10 +67,10 @@ img { max-width: 100%; display: block; }
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: rgba(13, 17, 20, 0.86);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  background: rgba(75, 97, 113, 0.212);
+  backdrop-filter: blur(10px);
+  border-bottom: 0px solid var(--line);
 }
 
 .header-inner {
@@ -414,4 +432,29 @@ img { max-width: 100%; display: block; }
   .wrap { padding: 0 20px; }
   .skills-grid { grid-template-columns: 1fr; }
   .hero-stats { flex-wrap: wrap; gap: 16px; }
+}
+
+.language-switch {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.language-switch .lang-btn {
+    background: transparent;
+    border: 1px solid var(--muted);
+    color: var(--paper);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.language-switch .lang-btn.active,
+.language-switch .lang-btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
 }
