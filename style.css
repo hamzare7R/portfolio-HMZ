@@ -1,17 +1,53 @@
-/* ============ Tokens ============ */
-:root {
-  --ink: #0D1114;
-  --panel: #161B1F;
-  --line: #2A3138;
-  --paper: #F1ECE2;
-  --muted: #9AA3AA;
-  --gold: #C68A34;
-  --gold-soft: #C68A3422;
 
-  --serif: 'Fraunces', Georgia, serif;
-  --sans: 'Inter', -apple-system, Segoe UI, sans-serif;
+/* ============ Skills (معدل بدون تقطيع وبشكل متناسق) ============ */
+.skills { 
+  padding: 80px 0; 
+  border-bottom: 1px solid rgba(59, 139, 219, 0.75); /* خط فاصل خفيف بين الأقسام */
+}
 
-  --wrap: 1120px;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* مسافة متناسقة بين الكروت بدلاً من الحدود المتقاطعة */
+  border: none; /* إزالة الحدود الخارجية المزعجة */
+}
+
+.skill-card {
+  padding: 32px;
+  background: rgba(75, 76, 77, 0.75); /* خلفية داكنة نصف شفافة تبرز النص فوق صورة الخلفية */
+  border: 1px solid rgba(198, 138, 52, 0.3); /* حد خفيف وأنيق بلون الجولد */
+  border-radius: 10px; /* حواف دائرية ناعمة */
+  backdrop-filter: blur(8px); /* تأثير ضبابي عصري على صورة الخلفية */
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px); /* رفع الكارت عند تحريك الماوس عليه */
+  border-color: rgba(245, 245, 12, 0.7);
+}
+
+.skill-card h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+  color: rgba(239, 237, 237, 0.377);
+}
+
+.skill-card p {
+  color: rgba(92, 209, 209, 0.979);
+  font-size: 0.92rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* للتجاوب مع الشاشات الصغيرة */
+@media (max-width: 860px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .skills-grid { grid-template-columns: 1fr; }
 }
 
 * { box-sizing: border-box; }
@@ -458,3 +494,22 @@ img { max-width: 100%; display: block; }
     color: var(--ink);
     border-color: var(--gold);
 }
+
+/* ============ Custom color overrides (placed last so they always win) ============ */
+:root {
+  --gold: #C9A227;      /* اللون الذهبي: الأزرار، hero-eyebrow، الـ hover */
+  --paper: #F3EEE4;     /* أبيض دافئ: النصوص الفاتحة */
+  --muted: #C9BDAE;     /* رمادي دافئ فاتح: النصوص الثانوية */
+  --ink: #16130F;       /* غامق: النص فوق الخلفيات الذهبية */
+}
+
+/* هيدر فوقاني: الشعار + روابط Work/Skills/About/Contact */
+.logo { color: var(--paper); }
+.nav a { color: var(--paper); }
+.nav a:hover { color: var(--gold); }
+
+/* العناوين الكبيرة اللي ما كانش عندها لون محدد */
+.hero-title { color: var(--paper); }
+.section-heading { color: var(--paper); }
+.skill-card h3 { color: var(--paper); }
+.work-head h3 { color: var(--paper); }
